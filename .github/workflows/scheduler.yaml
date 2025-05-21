@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  dispatch:
+  scan-scheduler:
     runs-on: ubuntu-latest
 
     steps:
