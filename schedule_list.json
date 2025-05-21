@@ -2,5 +2,9 @@
   {
     "repo_name": "my-test-1234/use-cxone-action",
     "branch": "main"
+  },
+  {
+    "repo_name": "my-test-1234/use-cxone-action",
+    "branch": "SAI-sec-patch-11"
   }
 ]
