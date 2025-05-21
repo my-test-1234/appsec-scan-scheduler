@@ -66,20 +66,20 @@ for item in schedule_list:
 
     response = requests.post(url, headers=HEADERS, json=payload)
     if response.status_code == 204:
-        scan_results[key] = {"status": "success"}
+        previous_results[key] = {"status": "success"}
         summary_lines.append(
             f"| `{repo_name}` | `{branch}` | ✅ Success | 🚀 Triggered |"
         )
     else:
         error_detail = response.text.strip().replace('\n', ' ')
-        scan_results[key] = {"status": "failed", "error": error_detail}
+        previous_results[key] = {"status": "failed", "error": error_detail}
         summary_lines.append(
             f"| `{repo_name}` | `{branch}` | ❌ Failed ({response.status_code}) | `{error_detail}` |"
         )
 
 # Save current scan results
 with open(SCAN_FILE, "w") as f:
-    json.dump(scan_results, f, indent=2)
+    json.dump(previous_results, f, indent=2)
 
 # Write markdown summary to GitHub Actions job summary
 summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
