@@ -52,7 +52,7 @@ for item in schedule_list:
         if previous and previous.get("status") == "success":
             should_trigger = False
             summary_lines.append(
-                f"| `{repo_name}` | `{branch}` | ✅ Skipped | Previously successful |"
+                f"| `{repo_name}` | `{branch}` | ✅ Skipped | 💥 Previously successful |"
             )
 
     if not should_trigger:
@@ -68,7 +68,7 @@ for item in schedule_list:
     if response.status_code == 204:
         scan_results[key] = {"status": "success"}
         summary_lines.append(
-            f"| `{repo_name}` | `{branch}` | 🚀 Dispatched | Dispatched successfully |"
+            f"| `{repo_name}` | `{branch}` | ✅ Success | 🚀 Triggered |"
         )
     else:
         error_detail = response.text.strip().replace('\n', ' ')
